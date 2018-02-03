@@ -18,7 +18,18 @@ class AI
      */
     public static function getGender($text)
     {
-        return 'Male';
+        // return 'Male';
+        $mystring = $text;
+        $findme   = 'ครับ';
+        $findme2 = 'ค่ะ';
+        $pos = strpos($mystring, $findme);
+        if ($pos !== false) {
+            return 'Male';
+        } else if(strpos($mystring, $findme2)) {
+            return 'Female';
+        }else
+            return 'Unknown';
+        
     }
 
     /**
@@ -34,7 +45,14 @@ class AI
      */
     public static function getRudeWords($text)
     {
-        return ['แสส'];
+        $check = array('ไอ้', 'บ้า','/มึง/', '/ว่ะ/','/fuck/', '/แม่ง/', '/เลว/', '/ฟาย/', '/สัส/', '/สัด/', '/ฉิหาย/');
+        foreach($check as $data){
+            $pos = strpos($text, $data);
+            if ($pos !== false) {
+                return ["$data"];
+            } 
+        }
+        return [''];
     }
 
     /**
